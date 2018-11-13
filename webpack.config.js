@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: './app/app.js',
@@ -9,6 +10,10 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'app'),
     publicPath: '/dist/',
-    watchContentBase: true
-  }
+    watchContentBase: true,
+    hot: true
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
