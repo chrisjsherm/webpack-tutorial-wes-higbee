@@ -12,9 +12,12 @@
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-junit-reporter": "^1.2.0",
-    "webpack": "^3.12.0"
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.9.2"
   },
   "scripts": {
+    "build": "webpack app/app.js app/dist/app.bundle.js",
+    "watch": "webpack --watch app/app.js app/dist/app.bundle.js",
     "postinstall": "node node_modules/bower/bin/bower install",
     "prestart": "npm install",
     "start": "http-server -c-1 -o",
