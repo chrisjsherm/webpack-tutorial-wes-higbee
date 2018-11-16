@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge');
+const StatsGraphPlugin = require('./StatsGraphPlugin');
+const babelLoader = require('./babelLoader');
 
 module.exports = function (env) {
   const isDevelopment = env === 'development';
@@ -20,20 +22,24 @@ module.exports = function (env) {
       })
     ]
   };
-    
+
   if (isDevelopment) {
     return webpackMerge(baseConfig, {
       devServer: {
         contentBase: path.resolve(__dirname, 'app'),
         publicPath: '/dist/',
         watchContentBase: false,
-        hotOnly: true
-      },  
+        hotOnly: true,
+        overlay: true
+      },
       plugins: [
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
-        ]
+        new webpack.HotModuleReplacementPlugin(),
+        new StatsGraphPlugin()
+      ]
     });
+  } else {
+    return webpackMerge(baseConfig, babelLoader);
   }
 
   return baseConfig;
