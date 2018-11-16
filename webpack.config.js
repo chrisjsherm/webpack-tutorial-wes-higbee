@@ -30,7 +30,8 @@ module.exports = function (env) {
         publicPath: '/dist/',
         watchContentBase: false,
         hotOnly: true,
-        overlay: true
+        overlay: true,
+        host: '0.0.0.0'
       },
       plugins: [
         new webpack.NamedModulesPlugin(),
